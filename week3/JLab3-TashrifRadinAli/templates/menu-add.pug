@@ -1,0 +1,17 @@
+//- Page with form to add new link to menuLinks collection
+//- /admin/menu/add
+extends layout 
+
+block layout-content 
+  h1 Add menu link 
+  form(method="post", action="/admin/menu/add/submit")
+    div 
+      label(for="wgt") Weight: 
+      input(type="number", id="wgt", name="weight", placeholder="0")
+    div 
+      label(for="href") URI/URL:
+      input(type="text", id="href", name="path", placeholder="/about")
+    div 
+      label(for="link-text") Link text: 
+      input(type="text", id="link-text", name="name", placeholder="About")
+    button(type="submit") Add link
