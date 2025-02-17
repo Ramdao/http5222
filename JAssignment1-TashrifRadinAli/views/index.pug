@@ -1,0 +1,85 @@
+doctype html
+html
+  head
+    title Admin - Video Game Library
+    link(rel="stylesheet", href="/css/styles.css")
+  body
+    h1 Admin Panel
+
+    // Form to Add Game
+    form(action="/api/games" method="POST")
+      label(for="title") Game Title:
+      input(type="text" name="title" required)
+
+      label(for="platform") Platform:
+      input(type="text" name="platform" required)
+
+      label(for="release_date") Release Date:
+      input(type="date" name="release_date" required)
+
+      label(for="genre") Genre:
+      input(type="text" name="genre" required)
+
+      label(for="rating") Rating (1-10):
+      input(type="number" name="rating" min="1" max="10" required)
+
+      button(type="submit") Add Game
+
+    hr
+
+    // Form to Add Player
+    form(action="/api/players" method="POST")
+      label(for="username") Username:
+      input(type="text" name="username" required)
+
+      label(for="favorite_games") Favorite Games (comma separated):
+      input(type="text" name="favorite_games" required)
+
+      label(for="hours_played") Hours Played:
+      input(type="number" name="hours_played" required)
+
+      button(type="submit") Add Player
+
+    hr
+
+    h2 Game List
+table
+  thead
+    tr
+      th Title
+      th Platform
+      th Release Date
+      th Genre
+      th Rating
+  tbody
+    - if (games && games.length > 0)
+      each game in games
+        tr
+          td= game.title
+          td= game.platform
+          td= game.release_date.toDateString()  
+          td= game.genre
+          td= game.rating
+    - else
+      tr
+        td No games available.
+
+hr
+
+h2 Player List
+table
+  thead
+    tr
+      th Username
+      th Favorite Games
+      th Hours Played
+  tbody
+    - if (players && players.length > 0)
+      each player in players
+        tr
+          td= player.username
+          td= player.favorite_games.join(', ')  
+          td= player.hours_played
+    - else
+      tr
+        td No players available.
