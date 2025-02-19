@@ -3,6 +3,7 @@ html
   head
     title Admin - Video Game Library
     link(rel="stylesheet", href="/css/styles.css")
+    script(src="/delete.js") 
   body
     h1 Admin Panel
 
@@ -43,43 +44,49 @@ html
     hr
 
     h2 Game List
-table
-  thead
-    tr
-      th Title
-      th Platform
-      th Release Date
-      th Genre
-      th Rating
-  tbody
-    - if (games && games.length > 0)
-      each game in games
+    table
+      thead
         tr
-          td= game.title
-          td= game.platform
-          td= game.release_date.toDateString()  
-          td= game.genre
-          td= game.rating
-    - else
-      tr
-        td No games available.
+          th Title
+          th Platform
+          th Release Date
+          th Genre
+          th Rating
+          th Actions
+      tbody
+        - if (games && games.length > 0)
+          each game in games
+            tr(id=`game-${game._id}`)
+              td= game.title
+              td= game.platform
+              td= game.release_date.toDateString()
+              td= game.genre
+              td= game.rating
+              td
+                button(type="button" class="delete-button" data-id=game._id) ❌ Delete
+        - else
+          tr
+            td(colspan="6") No games available.
 
-hr
+    hr
 
-h2 Player List
-table
-  thead
-    tr
-      th Username
-      th Favorite Games
-      th Hours Played
-  tbody
-    - if (players && players.length > 0)
-      each player in players
+    h2 Player List
+    table
+      thead
         tr
-          td= player.username
-          td= player.favorite_games.join(', ')  
-          td= player.hours_played
-    - else
-      tr
-        td No players available.
+          th Username
+          th Favorite Games
+          th Hours Played
+          th Actions
+      tbody
+        - if (players && players.length > 0)
+          each player in players
+            tr(id=`player-${player._id}`)
+              td= player.username
+              td= player.favorite_games.join(', ')
+              td= player.hours_played
+              td
+                button(type="button" class="delete-button" data-id=player._id) ❌ Delete
+        - else
+          tr
+            td(colspan="4") No players available.

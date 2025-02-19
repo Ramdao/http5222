@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 dotenv = require("dotenv");
+const express = require('express');
 
 // Load environment variables
 dotenv.config();
@@ -52,10 +53,22 @@ async function getPlayers() {
   return await Player.find({});
 }
 
+// Delete a Game by Title
+async function deleteGame(title) {
+  return await Game.findOneAndDelete({ title });
+}
+
+// Delete a Player by Username
+async function deletePlayer(username) {
+  return await Player.findOneAndDelete({ username });
+}
+
 // Export Functions
 module.exports = {
   getGames,
   getPlayers,
   addGame,
-  addPlayer
+  addPlayer,
+  deleteGame,
+  deletePlayer,
 };

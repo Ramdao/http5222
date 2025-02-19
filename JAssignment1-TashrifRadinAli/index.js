@@ -1,7 +1,7 @@
-// Required settings for this project
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
+const methodOverride = require('method-override');
 
 // Load environment variables from .env
 dotenv.config();
@@ -16,15 +16,16 @@ const port = process.env.PORT || "8888";
 // Middleware
 app.use(express.json()); // Parses JSON data in requests
 app.use(express.urlencoded({ extended: true })); // Parses form data
+app.use(methodOverride('_method')); // Allows for DELETE and PUT methods in forms
 
 // Set up application template engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// Set up folder for static files
+// Set up folder for static files (e.g., JavaScript for delete functionality)
 app.use(express.static(path.join(__dirname, "public")));
 
-// Route to the homepage
+// Route to the homepage (this could be an initial redirect or default page)
 app.get("/", (req, res) => {
   res.redirect("/index"); // Redirect to /index page for now
 });
@@ -87,6 +88,29 @@ app.post("/api/players", async (req, res) => {
     res.status(500).json({ error: "Failed to add player" });
   }
 });
+
+// Delete Game by Title route
+app.delete('/api/games/:title', async (req, res) => {
+  try {
+    const title = req.params.title;
+    await db.deleteGame(title); // delete by title
+    res.status(200).send("Game deleted successfully.");
+  } catch (err) {
+    res.status(500).send("Error deleting the game.");
+  }
+});
+
+// Delete Player by Username route
+app.delete('/api/players/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    await db.deletePlayer(username); // delete by username
+    res.status(200).send("Player deleted successfully.");
+  } catch (err) {
+    res.status(500).send("Error deleting the player.");
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {
