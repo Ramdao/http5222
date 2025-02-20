@@ -90,22 +90,23 @@ app.post("/api/players", async (req, res) => {
 });
 
 // Delete Game by Title route
-app.delete('/api/games/:title', async (req, res) => {
+app.get('/delete/game/:title', async (req, res) => {
   try {
     const title = req.params.title;
-    await db.deleteGame(title); // delete by title
-    res.status(200).send("Game deleted successfully.");
+    await db.deleteGame(title);
+    res.redirect('/index');
   } catch (err) {
     res.status(500).send("Error deleting the game.");
   }
 });
 
+
 // Delete Player by Username route
-app.delete('/api/players/:username', async (req, res) => {
+app.get('/delete/player/:username', async (req, res) => {
   try {
     const username = req.params.username;
-    await db.deletePlayer(username); // delete by username
-    res.status(200).send("Player deleted successfully.");
+    await db.deletePlayer(username); 
+    res.redirect('/index');
   } catch (err) {
     res.status(500).send("Error deleting the player.");
   }

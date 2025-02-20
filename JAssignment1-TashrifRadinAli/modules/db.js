@@ -55,8 +55,9 @@ async function getPlayers() {
 
 // Delete a Game by Title
 async function deleteGame(title) {
-  return await Game.findOneAndDelete({ title });
+  return await Game.findOneAndDelete({ title});
 }
+
 
 // Delete a Player by Username
 async function deletePlayer(username) {
