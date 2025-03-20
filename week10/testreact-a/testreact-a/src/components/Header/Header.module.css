@@ -1,0 +1,15 @@
+#header {
+  padding:2em 1em;
+  border-bottom:2px dotted #646cff;
+}
+.sitename a {
+  color:coral;
+}
+.active {
+  color:#fff;
+}
+.special {
+  background:#646cff;
+  color:#fff;
+  padding:0.8em;
+}

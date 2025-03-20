@@ -1,0 +1,74 @@
+/* General Styles */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Card Container */
+  .container {
+    max-width: 500px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+  
+  /* Category Styling */
+  .category {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #facc15; /* Gold color */
+  }
+  
+  /* Question Styling */
+  .question {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Buttons */
+  .button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Answer Styling */
+  .answer {
+    margin-top: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #22c55e; /* Green color */
+  }
+  
+  /* Error Styling */
+  .error {
+    color: #ff4d4d; /* Red color */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
