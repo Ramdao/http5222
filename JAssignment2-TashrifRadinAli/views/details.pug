@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    title Top Rated Games
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    h1 Top 10 Rated Games
+    a.back-link(href="/") ← Back Home
+
+    if games.length
+      .game-list
+        each game in games
+          .game-card
+            if game.background_image
+              img(src=game.background_image, alt=game.name)
+            h3= game.name
+            if game.released
+              p Released: #{game.released}
+            if game.rating
+              p Rating: #{game.rating.toFixed(1)}/5
+    else
+      .no-games
+        p No top-rated games found.

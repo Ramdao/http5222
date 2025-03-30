@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+  head
+    title Game Finder
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    .header-links
+      a.top-games-link(href="/details") Top 10 Games
+    h1 Game Finder
+    
+    .section
+      h2 Find Games by Mood
+      .search-container
+        input(type="text", id="moodSearchInput", placeholder="How are you feeling? (e.g. stressed, happy, bored)")
+        button(id="moodSearchButton") Find Games
+      .examples
+        p Try: excited | relaxed | nostalgic | competitive | lonely
+      div(id="moodResults")
+        p Enter your current mood to get game suggestions!
+    
+    if showGameSearch
+      .section
+        h2 Search for Games
+        form#gameSearchForm.search-container
+          input(type="text", id="gameSearchInput", placeholder="Search for a game...", value=searchQuery)
+          button(type="submit").search-button Search
+        
+        if games.length > 0
+          .game-grid
+            each game in games
+              .game-tile
+                if game.background_image
+                  img(src=game.background_image, alt=game.name)
+                h3= game.name
+                if game.released
+                  p Released: #{game.released}
+                if game.rating
+                  p Rating: #{game.rating.toFixed(1)}/5
+                a(href=`/details?id=${game.id}`) More details
+        else if searchQuery
+          p No games found matching "#{searchQuery}"
+
+    script(src="/script.js")
